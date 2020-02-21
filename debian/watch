@@ -1,0 +1,9 @@
+# uscan watch file
+version=4
+opts="dversionmangle=s%\+dfsg\d*$%%,\
+      filenamemangle=s%(?:.*?)?v?(\d[\d.]*)\.tar\.xz%Arduino-$1.tar.xz%,\
+      pgpsigurlmangle=s%$%.asc%,\
+      repack,\
+      repacksuffix=+dfsg" \
+    https://github.com/arduino/Arduino/releases \
+    .*/Arduino-@ANY_VERSION@\.tar\.xz debian uupdate

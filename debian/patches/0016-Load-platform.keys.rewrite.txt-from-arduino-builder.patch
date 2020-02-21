@@ -1,0 +1,21 @@
+From: Ignacio Losiggio <iglosiggio@gmail.com>
+Date: Tue, 3 Apr 2018 15:14:18 -0300
+Subject: Load platform.keys.rewrite.txt from arduino-builder
+
+---
+ arduino-core/src/processing/app/debug/LegacyTargetPlatform.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arduino-core/src/processing/app/debug/LegacyTargetPlatform.java b/arduino-core/src/processing/app/debug/LegacyTargetPlatform.java
+index c00378c..37f0896 100644
+--- a/arduino-core/src/processing/app/debug/LegacyTargetPlatform.java
++++ b/arduino-core/src/processing/app/debug/LegacyTargetPlatform.java
+@@ -155,7 +155,7 @@ public class LegacyTargetPlatform implements TargetPlatform {
+   }
+ 
+   private void rewriteKeysOfOldPlatformsTxtAndWarnAboutIt() throws IOException {
+-    File platformRewrite = new File(BaseNoGui.getHardwareFolder(), "platform.keys.rewrite.txt");
++    File platformRewrite = new File("/usr/share/arduino-builder/platform.keys.rewrite.txt");
+     PreferencesMap platformRewriteProps = new PreferencesMap(platformRewrite);
+ 
+     PreferencesMap oldProps = platformRewriteProps.subTree("old");

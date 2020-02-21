@@ -1,0 +1,52 @@
+From: Ignacio Losiggio <iglosiggio@gmail.com>
+Date: Wed, 4 Apr 2018 12:56:08 -0300
+Subject: Do not run windows and mac cleaning tasks (i've deleted the folders)
+
+---
+ build/build.xml | 19 +------------------
+ 1 file changed, 1 insertion(+), 18 deletions(-)
+
+diff --git a/build/build.xml b/build/build.xml
+index b2516a3..cceb35b 100644
+--- a/build/build.xml
++++ b/build/build.xml
+@@ -332,15 +332,6 @@
+   <!-- - - - - - - - -->
+   <!-- Mac OS X      -->
+   <!-- - - - - - - - -->
+-  <target name="macosx-clean" depends="subprojects-clean" description="Clean Mac OS X build">
+-    <delete dir="macosx/work" />
+-    <delete dir="macosx/working_dir" />
+-    <delete dir="macosx/working.dmg" />
+-    <delete file="macosx/arduino-*.dmg" />
+-    <delete>
+-      <fileset dir="macosx" includes="arduino-*macosx*.zip"/>
+-    </delete>
+-  </target>
+ 
+   <target name="macosx-checkos" unless="macosx">
+     <echo>
+@@ -881,14 +872,6 @@
+   <!-- Windows       -->
+   <!-- - - - - - - - -->
+ 
+-  <target name="windows-clean" depends="subprojects-clean"
+-	  description="Clean windows version">
+-    <delete dir="windows/work" />
+-    <delete>
+-      <fileset dir="windows" includes="arduino-*windows*.zip"/>
+-    </delete>
+-  </target>
+-
+   <target name="windows-checkos" unless="windows">
+     <echo>
+       =======================================================
+@@ -1154,7 +1137,7 @@
+   <!-- - - - - - - - -->
+ 
+   <target name="clean" description="Perform a spring cleaning"
+-	  depends="linux-clean, windows-clean, macosx-clean, subprojects-clean">
++	  depends="linux-clean, subprojects-clean">
+   </target>
+ 
+   <target name="avr-toolchain-bundle" unless="light_bundle">

@@ -1,0 +1,21 @@
+From: Ignacio Losiggio <iglosiggio@gmail.com>
+Date: Tue, 3 Apr 2018 14:33:27 -0300
+Subject: Use system-wide arduino-builder
+
+---
+ arduino-core/src/cc/arduino/Compiler.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arduino-core/src/cc/arduino/Compiler.java b/arduino-core/src/cc/arduino/Compiler.java
+index 5d82543..7c3bec9 100644
+--- a/arduino-core/src/cc/arduino/Compiler.java
++++ b/arduino-core/src/cc/arduino/Compiler.java
+@@ -232,7 +232,7 @@ public class Compiler implements MessageConsumer {
+ 
+   private void callArduinoBuilder(TargetBoard board, TargetPlatform platform, TargetPackage aPackage, String vidpid, BuilderAction action, OutputStream outStream, OutputStream errStream) throws RunnerException {
+     List<String> cmd = new ArrayList<>();
+-    cmd.add(BaseNoGui.getContentFile("arduino-builder").getAbsolutePath());
++    cmd.add("arduino-builder");
+     cmd.add(action.value);
+     cmd.add("-logger=machine");
+ 

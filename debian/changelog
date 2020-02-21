@@ -1,0 +1,420 @@
+arduino (2:1.8.5+dfsg.3-1) UNRELEASED; urgency=medium
+
+  [ Ignacio Losiggio ]
+  * New upstream version (Closes: #780706)
+  * Generated a new tarball without platform-specific windows/mac code
+
+ -- Ignacio Losiggio <iglosiggio@gmail.com>  Wed, 28 Mar 2018 14:48:49 -0300
+
+arduino (2:1.8.5+dfsg-1) UNRELEASED; urgency=medium
+
+  [ Geert Stappers ]
+  * Non-maintainer upload.
+  * New upstream version (Closes: #780706)
+  * watch file revisited, s/google code/git hub/
+  * README.source:  new file, to document some how our workflow
+  * Documented '+dfsg' in README.source
+  * raised compat version from 8 to 9
+  * control:
+    - build depend on libastyle-dev
+    - build depends for .jar files that upstream has in their tarball
+    - build depend on unzip
+  * Various patches refreshed
+  * New patches:
+    - Libastyle is packaged
+    - No Mac OS X  Think Different
+    - Seperate reference
+
+  [ Ignacio Losiggio ]
+  * New upstream version
+  * Various patches refreshed
+
+ -- Ignacio Losiggio <iglosiggio@gmail.com>  Wed, 27 Dec 2017 15:05:05 -0300
+
+arduino (2:1.6.8-0) UNRELEASED; urgency=medium
+
+  * Never uploaded.
+  * Used as exercise for 1.8.2
+  * Note: 'dfsg' is gone from the debian version
+
+ -- Geert Stappers <stappers@debian.org>  Sun, 28 May 2017 12:26:50 +0200
+
+arduino (2:1.0.5+dfsg2-4) unstable; urgency=medium
+
+  * Add revisions.txt to distribution (LP: #1319627)
+  * DSV 3.9.5 no changes
+
+ -- Scott Howard <showard@debian.org>  Thu, 29 May 2014 16:58:21 -0400
+
+arduino (2:1.0.5+dfsg2-3) unstable; urgency=low
+
+  * Bump epoch to fix versioning problems with arduino-mk
+
+ -- Scott Howard <showard@debian.org>  Wed, 02 Apr 2014 16:17:49 -0400
+
+arduino (1:1.5.6.2+really1.0.5-1) unstable; urgency=low
+
+  * Replace accidental upload to unstable.
+
+ -- Scott Howard <showard@debian.org>  Tue, 01 Apr 2014 16:53:39 -0400
+
+arduino (1:1.0.5+dfsg2-2) unstable; urgency=low
+
+  * remove link to web-based icons in documentation. Fixes privacy
+    violation, thanks lintian.
+
+ -- Scott Howard <showard@debian.org>  Fri, 14 Feb 2014 16:41:41 -0500
+
+arduino (1:1.0.5+dfsg2-1) unstable; urgency=low
+
+  * New upstream release
+  * removed debian/patches/fr_fix.diff, applied upstream
+  * Added Keywords to arduino.desktop
+  * SV 3.9.4 no changes
+  * Vcs-* changed to cannonical URLs
+  * New patches:
+    - debian/patches/Adafruit_GFX.patch: fixed typo
+    - debian/patches/const_progmem.patch: PROGMEM variables must be
+      consts
+    - debian/patches/depricated_typedef_support.patch: enable
+      compatibility support for avr-libc depricated typedefs
+    - debian/patches/roboIRread.patch: fixed typos
+
+ -- Scott Howard <showard@debian.org>  Tue, 04 Jun 2013 11:58:36 -0400
+
+arduino (1:1.0.4+dfsg-2) unstable; urgency=low
+
+  * Merge from experimental
+  * Create symoblic link /usr/share/arduino/harware/tools/avr to /usr
+    Thanks to Alessandro Ghedini (Closes: #704001)
+
+ -- Scott Howard <showard@debian.org>  Sun, 05 May 2013 14:46:53 -0400
+
+arduino (1:1.0.4+dfsg-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Scott Howard <showard@debian.org>  Mon, 18 Mar 2013 22:14:36 -0400
+
+arduino (1:1.0.3+dfsg-2) experimental; urgency=low
+
+  * debian/patches/no-caller-saves.patch
+    - workaround for GCC 4.7 bug, WiFi.cpp won't compile (Closes: #698254)
+      (LP: #1112499)
+
+ -- Scott Howard <showard@debian.org>  Fri, 01 Feb 2013 09:47:46 -0500
+
+arduino (1:1.0.3+dfsg-1) experimental; urgency=low
+
+  * New upstream release. Updated debian/copyright and added copyright_check
+    rule to debian/rules
+
+ -- Scott Howard <showard@debian.org>  Fri, 28 Dec 2012 11:45:55 -0500
+
+arduino (1:1.0.2+dfsg-1) experimental; urgency=low
+
+  * New upstream release
+    - No wifishield firmware inluded in Debian: pre-compiled avr32 binaries
+      with no sane build system. For source code and binaries, see the 
+      wifishield repo on github
+  * refreshed patches:
+    - debian/patches/SimpleDateFormat_fix.diff deleted, applied upstream
+    - debian/patches/gcc47_avr.patch updated, partially applied upstream
+    - debian/patches/wrapper_for_deb.patch updated, partially applied upstream
+  * Updated debian/copyright for new files
+
+ -- Scott Howard <showard@debian.org>  Mon, 05 Nov 2012 13:53:48 -0500
+
+arduino (1:1.0.1+dfsg-7) unstable; urgency=low
+
+  * Fixed another gcc 4.7 related bug in Ethernet library due to IPAddress
+    pointing to either a uint8_t or unint32_t IP address (Closes: #689325)
+    Thanks to Francesco Apollonio
+
+ -- Scott Howard <showard@debian.org>  Tue, 02 Oct 2012 15:19:56 -0400
+
+arduino (1:1.0.1+dfsg-6) unstable; urgency=low
+
+  * Fixes gcc 4.7 related build failure of Ethernet library
+    (Closes: #684748)
+
+ -- Scott Howard <showard@debian.org>  Fri, 24 Aug 2012 09:29:34 -0400
+
+arduino (1:1.0.1+dfsg-5) unstable; urgency=low
+
+  * Updated Resources_fr.propertues to fix French transtaion of Copy
+    in Edit menu (Closes: #682079)
+
+ -- Scott Howard <showard@debian.org>  Mon, 30 Jul 2012 11:04:58 -0400
+
+arduino (1:1.0.1+dfsg-4) unstable; urgency=low
+
+  * Fixed French translation of "Copy" in "Edit" menu (Closes: #682079)
+
+ -- Scott Howard <showard@debian.org>  Thu, 19 Jul 2012 13:51:07 -0400
+
+arduino (1:1.0.1+dfsg-3) unstable; urgency=low
+
+  * Fixed spelling error in pop-up window that adds users to dialout
+    group. Clarified that clicking "Add" will add you to the group.
+    (Closes: #677376)
+  * Added patches for core library using gcc-avr 4.7 (Closes: #677294)
+
+ -- Scott Howard <showard@debian.org>  Wed, 13 Jun 2012 10:30:23 -0400
+
+arduino (1:1.0.1+dfsg-2) unstable; urgency=low
+
+  * debian/patches/SimpleDateFormat_fix.diff
+    - Arduino would fail to launch if date strings were improperly
+      translated. (Closes: #674415)
+
+ -- Scott Howard <showard@debian.org>  Sun, 03 Jun 2012 16:35:24 -0400
+
+arduino (1:1.0.1+dfsg-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Scott Howard <showard@debian.org>  Tue, 22 May 2012 09:26:04 -0400
+
+arduino (1:1.0.1~rc2+dfsg-2) experimental; urgency=low
+
+  * Allow for opening file from command line or file manager
+    e.g. "$ arduino {filename}.ino" (LP: #998952)
+  * Properly detect groups assigned by PAM (Closes: #669058)
+
+ -- Scott Howard <showard@debian.org>  Mon, 14 May 2012 00:05:04 -0400
+
+arduino (1:1.0.1~rc2+dfsg-1) experimental; urgency=low
+
+  * Updated watch file, remove compressed avrtools that upstream added
+  * New upstream release.
+
+ -- Scott Howard <showard@debian.org>  Wed, 11 Apr 2012 23:21:24 -0400
+
+arduino (1:1.0.1~rc1+dfsg-1) experimental; urgency=low
+
+  * New upstream release, experimental.
+
+ -- Scott Howard <showard@debian.org>  Sun, 11 Mar 2012 18:19:42 -0400
+
+arduino (1:1.0+dfsg-9) unstable; urgency=low
+
+  * *.pde has been renamed *.ino by upstream. debian/rules changed
+    to not compress *.ino
+
+ -- Scott Howard <showard@debian.org>  Thu, 01 Mar 2012 15:58:45 -0500
+
+arduino (1:1.0+dfsg-8) unstable; urgency=low
+
+  * Made the bootloader makefile script executable, no need for lintian
+    overrides any more (arduino/hardware/arduino/bootloaders/optboot/makeall)
+  * Removed all mjo makefile patches from package. Arduino-mk is now
+    suggested by arduino-core.
+  * Debian S-R 3.9.3 no changes
+
+ -- Scott Howard <showard@debian.org>  Sun, 26 Feb 2012 10:52:34 -0500
+
+arduino (1:1.0+dfsg-7) unstable; urgency=low
+
+  * arduino-core depends on libconfig-yaml-perl. Ship mjo/ard-parse-boards
+    (Closes: #660271). Will eventually drop that depend and move all mjo/
+    to new package now that there are regular releases.
+
+ -- Scott Howard <showard@debian.org>  Sat, 18 Feb 2012 12:01:40 -0500
+
+arduino (1:1.0+dfsg-6) unstable; urgency=low
+
+  * New upstream release of mjo makefile (0.8). debian/patches/mjo* updated
+    - Patches for version 1.0 of the Arduino IDE. Older versions might still
+      work, but I've not tested it.
+    - A change to the build process: rather than link all the system objects
+      directly into the executable, bundle them in a library first. This
+      should make the final executable smaller.
+    - If TARGET isn't explicitly set, default to the current directory name.
+      Thanks to Daniele Vergini for this patch.
+    - Add support for .c files in system libraries: Dirk-Willem van Gulik and
+      Evan Goldenberg both reported this and provided patches in the same
+      spirit.
+    - Added a size target as suggested by Alex Satrapa.
+
+
+ -- Scott Howard <showard@debian.org>  Sun, 12 Feb 2012 17:33:27 -0500
+
+arduino (1:1.0+dfsg-5) unstable; urgency=low
+
+  * Updated Arduino.mk and arduino-cli.html in arduino-core for
+    version 1.0 of IDE (Closes: #654162) Thanks to Antoine Sirinelli.
+
+ -- Scott Howard <showard@debian.org>  Sun, 22 Jan 2012 00:55:49 -0500
+
+arduino (1:1.0+dfsg-4) unstable; urgency=low
+
+  * policykit moved to Recommends. Package can be configured
+    and work without policykit (Closes: #653295)
+  * Dependency on zenity removed (Closes: #653296). Uses Debian
+    specefic checker in debian/permission-checker instead (written in
+    java as to pull in no extra dependencies).
+
+ -- Scott Howard <showard@debian.org>  Tue, 27 Dec 2011 12:21:24 -0500
+
+arduino (1:1.0+dfsg-3) unstable; urgency=low
+
+  * Only add user to dialout group, not tty. Testing shows only
+    dialout is necessary, and don't want to add extra permissions.
+  * added manpage for arduino-add-groups
+
+ -- Scott Howard <showard@debian.org>  Fri, 23 Dec 2011 11:03:49 -0500
+
+arduino (1:1.0+dfsg-2) unstable; urgency=low
+
+  * Historic arduino main.cxx and Makefile removed in favor of
+    /usr/share/arduino/Arduino.mk. (Closes: #652571)
+  * Updated debian/watch to ignore versions starting with 00
+  * debian/patches/permission_fix.patch,
+    debian/dist/cc.arduino.add-groups.policy,
+    debian/dist/arduino-add-groups added to add users to dailout and
+    tty groups if needed. (Closes: #652523)
+  * Added debian/arduino.sharedmimeinfo
+
+ -- Scott Howard <showard@debian.org>  Sun, 18 Dec 2011 21:12:15 -0500
+
+arduino (1:1.0+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/patches/arduino_protocol_avrdude_510.patch removed, applied upstream
+
+ -- Scott Howard <showard@debian.org>  Mon, 05 Dec 2011 18:36:02 -0500
+
+arduino (1:1.0~beta1+dfsg-1) experimental; urgency=low
+
+  * New upstream beta release
+  * Added new icons for hicolor theme
+  * refreshed patches
+  * Fix for Ethernet library with gcc-avr 4.5.3 (Closes: #645321,
+    LP: #865266)
+
+ -- Scott Howard <showard@debian.org>  Wed, 19 Oct 2011 10:01:21 -0400
+
+arduino (0022+dfsg-3) unstable; urgency=low
+
+  * Moved all non-java bits to arduino-core (Closes: #613812)
+  * Edited Makefile to compile libraries during Makefile builds.
+    - debian/patches/makefile_libraries.diff (Closes: #594191)
+      Thanks to Stefan Tomanek
+  * debian/icons/* debian/arduino.xpm  New icons, thanks to Peter Oliver.
+
+ -- Scott Howard <showard@debian.org>  Tue, 29 Mar 2011 11:01:22 -0400
+
+arduino (0022+dfsg-2) unstable; urgency=low
+
+  * Updated debian/watch (Closes: #611745)
+  * debian/control
+    - DM-U-A removed, changed maintainer to @debian.org
+    - versioned depends on rxtx (>=2.2pre2-3) for Arduino Uno support
+  * debhelper 8 and debian/compat 8
+
+ -- Scott Howard <showard@debian.org>  Thu, 10 Feb 2011 22:50:33 -0500
+
+arduino (0022+dfsg-1) experimental; urgency=low
+
+  * New upstream release.
+  * Dependency pruning: no need to depend on libecj-java, liboro-java
+  * Refreshed patches, removed convet_to_debian_oro.patch (no longer
+    needed)
+  * Fixed typo in description (Closes: #608334, LP: #695481)
+
+ -- Scott Howard <showard314@gmail.com>  Sat, 08 Jan 2011 11:02:17 -0500
+
+arduino (0021+dfsg-3) experimental; urgency=low
+
+  * Corrected wrapper LD_LIBRARY_PATH variable in case it is not set
+    debian/patches/wrapper_for_deb.patch
+  * debian/patches/remove_update_warning.patch
+    -Removed notification of new upstream versions (Closes: #603818)
+  * Dependency pruning: no need to depend on a jdk or ant
+
+ -- Scott Howard <showard314@gmail.com>  Sat, 20 Nov 2010 11:25:00 -0500
+
+arduino (0018+dfsg-6) unstable; urgency=low
+
+   * Properly sets LD_LIBRARY_PATH in the arduino wrapper if it has not
+     be previously defined or empty. See Debian bug 602041.
+   * Corrected typo in arduino (0018+dfsg-5) debian/changelog entry
+     /usr/lib/jni is correct (used to be /usr/lib/java, which is
+     incorrect)
+
+ -- Scott Howard <showard314@gmail.com>  Mon, 01 Nov 2010 20:47:30 -0400
+
+arduino (0018+dfsg-5) unstable; urgency=low
+
+   * Sets LD_LIBRARY_PATH in the arduino wrapper to look in /usr/lib/jni.
+     This allows arduino to start when using a sun-java jre. See Debian
+     bug 382686.
+
+ -- Scott Howard <showard314@gmail.com>  Sat, 30 Oct 2010 11:26:53 -0400 
+
+arduino (0021+dfsg-2) experimental; urgency=low
+
+  * updates wrapper_for_deb.patch to set the LD_LIBRARY_PATH for sun-java
+    jre. (LP: #664309)
+  * debian/patches/install_jar_links.patch
+    - Added patch to install symlinks for Debian java library packages.
+
+ -- Scott Howard <showard314@gmail.com>  Sun, 24 Oct 2010 22:27:17 -0400
+
+arduino (0021+dfsg-1) experimental; urgency=low
+
+  * New upstream release (debian/rules get-orig-source target updated)
+
+ -- Scott Howard <showard314@gmail.com>  Tue, 05 Oct 2010 22:10:54 -0400
+
+arduino (0019+dfsg-1) experimental; urgency=low
+
+  * New upstream release
+    - switch to ant build system
+    - refreshed patches
+  * Debian policy 3.9.1
+
+ -- Scott Howard <showard314@gmail.com>  Wed, 08 Sep 2010 18:54:10 -0400
+
+arduino (0018+dfsg-4) unstable; urgency=low
+
+  * Corrected and added stanzas to debian/copyright for
+    - libraries/Ethernet/utility/w5100.* (GPL-2)
+    - examples/ArduinoISP/ArduinoISP.pde (BSD)
+    Thanks to Eberhard Fahle.
+  * Depends on openjdk-6-jdk OR sun-java6-jdk. Thanks to Guillermo Reisch
+  * Added support for Debian's avrdude upload protocol in
+    hardware/arduino/boards.txt, thanks to Ami Chayun (Closes: 588083)
+  * Debian policy 3.9.0 (no changes)
+
+ -- Scott Howard <showard314@gmail.com>  Wed, 07 Jul 2010 21:50:09 -0400
+
+arduino (0018+dfsg-3) unstable; urgency=low
+
+  * Removed unneeded javadoc and arduino.jar to usr/share/arduino/
+  * Changed Priority to extra (Closses: #586782)
+
+ -- Scott Howard <showard314@gmail.com>  Fri, 25 Jun 2010 18:36:16 -0400
+
+arduino (0018+dfsg-2) unstable; urgency=low
+
+  [ Philip Hands ]
+  * Merge arduino-core into full Java package
+  * Use 0.4 version of Martin Oldfield's Arduino.mk
+
+  [ Scott Howard ]
+  * Added a arduino.README.Debian for users with non-reparenting WMs
+  * Added Philip Hands as an uploader and Vcs info to debian/control
+  * Installs reference/ and examples/ to /usr/share/doc and links from
+    /usr/share/arduino
+  * added prefixes to files in a debian directory for arduino and
+    arduino-core package files
+
+ -- Philip Hands <phil@hands.com>  Tue, 08 Jun 2010 20:14:01 +0100
+
+arduino (0018+dfsg-1) unstable; urgency=low
+
+  * Initial release. (Closes: #577249)
+
+ -- Scott Howard <showard314@gmail.com>  Tue, 13 Apr 2010 22:32:24 -0400

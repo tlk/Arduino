@@ -1,0 +1,90 @@
+From: Scott Howard <showard@debian.org>
+Date: Wed, 28 Mar 2018 15:52:22 -0300
+Subject: prevent_build_time_downloads
+
+---
+ build/build.xml | 17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
+
+diff --git a/build/build.xml b/build/build.xml
+index 2f1dbc6..b2516a3 100644
+--- a/build/build.xml
++++ b/build/build.xml
+@@ -187,13 +187,13 @@
+ 
+     <antcall target="assemble-libraries" />
+ 
+-    <!-- Add WiFi101 updater tool -->
++    <!-- Add WiFi101 updater tool
+     <antcall target="unzip">
+       <param name="archive_file" value="shared/WiFi101-Updater-ArduinoIDE-Plugin-0.9.1.zip" />
+       <param name="archive_url" value="https://github.com/arduino-libraries/WiFi101-FirmwareUpdater-Plugin/releases/download/v0.9.1/WiFi101-Updater-ArduinoIDE-Plugin-0.9.1.zip" />
+       <param name="final_folder" value="${target.path}/tools/WiFi101" />
+       <param name="dest_folder" value="${target.path}/tools/" />
+-    </antcall>
++    </antcall> -->
+   </target>
+ 
+   <target name="assemble-docs" unless="no_docs">
+@@ -231,6 +231,7 @@
+     <attribute name="tag" default="@{version}"/>
+     <attribute name="githubuser" default="arduino-libraries"/>
+     <sequential>
++      <!--
+       <antcall target="unzip">
+         <param name="archive_file" value="@{name}-@{version}.zip"/>
+         <param name="archive_url" value="https://github.com/@{githubuser}/@{name}/archive/@{tag}.zip"/>
+@@ -238,6 +239,10 @@
+         <param name="dest_folder" value="${target.path}/libraries"/>
+       </antcall>
+       <move file="${target.path}/libraries/@{name}-@{version}" tofile="${target.path}/libraries/@{foldername}"/>
++      -->
++      <echo message="##############" />
++      <echo message="NO download of https://github.com/@{githubuser}/@{name}/archive/@{tag}.zip" />
++      <echo message="##############" />
+     </sequential>
+   </macrodef>
+ 
+@@ -640,6 +645,8 @@
+       <param name="parentdir" value="linux/work" />
+     </antcall>
+ 
++    <echo message="TODO  package a liblistserial-jni" />
++    <!-- (((
+     <antcall target="unzip">
+       <param name="archive_file" value="./liblistSerials-${LIBLISTSERIAL-VERSION}.zip" />
+       <param name="archive_url" value="https://downloads.arduino.cc/liblistSerials/liblistSerials-${LIBLISTSERIAL-VERSION}.zip" />
+@@ -648,6 +655,7 @@
+     </antcall>
+     <copy file="linux/liblistSerials-${LIBLISTSERIAL-VERSION}/linux${arch-bits}/liblistSerialsj.so" todir="linux/work/lib/" />
+     <chmod perm="755" file="linux/work/lib/liblistSerialsj.so" />
++    ))) -->
+ 
+   </target>
+ 
+@@ -670,6 +678,8 @@
+       <param name="parentdir" value="linux/work" />
+     </antcall>
+ 
++    <echo message="TODO  package a liblistserial-jni" />
++    <!-- (((
+     <antcall target="unzip">
+       <param name="archive_file" value="./liblistSerials-${LIBLISTSERIAL-VERSION}.zip" />
+       <param name="archive_url" value="https://downloads.arduino.cc/liblistSerials/liblistSerials-${LIBLISTSERIAL-VERSION}.zip" />
+@@ -678,6 +688,7 @@
+     </antcall>
+     <copy file="linux/liblistSerials-${LIBLISTSERIAL-VERSION}/arm/liblistSerialsj.so" todir="linux/work/lib/" />
+     <chmod perm="755" file="linux/work/lib/liblistSerialsj.so" />
++    ))) -->
+ 
+   </target>
+ 
+@@ -1150,7 +1161,7 @@
+     <!-- Unzip AVR tools -->
+     <mkdir dir="${staging_folder}/work/${staging_hardware_folder}/tmp/gcc"/>
+ 
+-    <antcall target="${unpack_target}">
++<antcall target="${unpack_target}">
+       <param name="archive_file" value="${staging_folder}/${gcc_archive_file}"/>
+       <param name="archive_url" value="https://downloads.arduino.cc/tools/${gcc_archive_file}"/>
+       <param name="final_folder" value="${staging_folder}/work/${staging_hardware_folder}/tmp/gcc/${gcc_version}/"/>

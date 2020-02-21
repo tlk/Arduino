@@ -1,0 +1,8 @@
+/etc/avrdude.conf /usr/share/arduino/hardware/tools/avrdude.conf
+/usr/bin/avrdude /usr/share/arduino/hardware/tools/avrdude
+/usr/share/doc/arduino-core/examples /usr/share/arduino/examples
+/usr/share/doc/arduino-core/reference /usr/share/arduino/reference
+/usr/bin /usr/share/arduino/hardware/tools/avr/bin
+/usr/lib /usr/share/arduino/hardware/tools/avr/lib
+/usr/share/doc /usr/share/arduino/hardware/tools/avr/share/doc
+

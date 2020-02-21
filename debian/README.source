@@ -1,0 +1,61 @@
+
+For my co-maintainers and my future self.
+
+
+With
+  uscan
+you can get upstream tarball.
+If not, decrease temporary the version in top of debian/change
+and `uscan` again.
+Or in verbose mode, `uscan -v`, to see what is going on.
+
+DFSG it.
+Remove all jar files from tarball that upstream provides.
+ * uncompress and untar
+ * some check on  *.jar being a "JAR"
+ * find Arduino-X.Y.Z -name \*.jar -delete
+ * mv Arduino-X.Y.Z/ arduino-X.Y.Z+dfsg/
+ * tar cf arduino_X.Y.Z+dfsg.orig.tar arduino-X.Y.Z+dfsg/
+ * xz arduino_X.Y.Z+dfsg.orig.tar
+
+Then "git stuff"
+  git checkout upstream
+  rm -r *
+  rm -rf .settings/
+  tar xf ../arduino-X.Y.Z+dfsg.orig.tar.xz --strip-components=1
+  git add .
+  git commit -m "Imported Upstream version X.Y.Z+dfsg"
+  git tag
+  git tag upstream/X.Y.Z+dfsg
+  git push https://${LOGNAME}@salsa.debian.org/electronics-team/arduino/arduino.git
+  git push --tag https://${LOGNAME}@salsa.debian.org/electronics-team/arduino/arduino.git
+  git checkout pristine-tar
+  pristine-tar commit ../arduino-X.Y.Z+dfsg.orig.tar.xz upstream/X.Y.Z+dfsg
+  git push https://${LOGNAME}@salsa.debian.org/electronics-team/arduino/arduino.git
+  git checkout master
+
+Import by
+  debian/script/import ../arduino*VERSION*tar*z
+
+
+Now the real thing
+
+The upstream arduino assumes there is Internet connection during build.
+That would be moving target for source code inspection.
+Most files in debian/patches/ cope with it.
+
+
+We have / had  in May 2017 three branches in use:
+ * master
+ * upstream
+ * pristine-tar
+They were update by hand.
+Tooling like "git-buildpackage" might work here.
+Currently, May 2017, not verified. TODO: can gbp be used?
+
+
+  git push https://${LOGNAME}@salsa.debian.org/electronics-team/arduino/arduino.git
+  git push --tags https://${LOGNAME}@salsa.debian.org/electronics-team/arduino/arduino.git
+
+
+Please keep this file in shape

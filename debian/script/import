@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+#  import, script for importing new upstream tarball
+#
+if [ -z "${1}" ] ; then
+	echo "E:Missing tarball filename"
+	echo "I:Usage: ${0} upstreamtarball"
+	exit 1
+fi
+if [ -d .git -a -d debian ] ; then
+	# clean the current directory
+	find . -maxdepth 1 | grep -v -e ^.$ -e ^./.git$ -e ^./debian$ \
+	| xargs rm -rf
+else
+	echo "E: You are not in the expected directory"
+	exit 1
+fi
+echo "I: Untar of ${1} in progress ..."
+tar xf ${1} --strip-components=1
+echo "I: Done."
+# l l

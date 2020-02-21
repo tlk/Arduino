@@ -1,0 +1,52 @@
+From: Scott Howard <showard@debian.org>
+Date: Wed, 28 Mar 2018 15:52:21 -0300
+Subject: remove_copying_binaries
+
+---
+ build/build.xml | 30 ------------------------------
+ 1 file changed, 30 deletions(-)
+
+diff --git a/build/build.xml b/build/build.xml
+index 3977e89..d31d1bd 100644
+--- a/build/build.xml
++++ b/build/build.xml
+@@ -720,39 +720,9 @@
+   </target>
+ 
+   <target name="linux32-build" depends="linux-libastyle-x86" description="Build linux (32-bit) version">
+-    <antcall target="linux-jvm-${linux-bundle-jvm-task}">
+-      <param name="JVM" value="${LINUX32_BUNDLED_JVM}"/>
+-    </antcall>
+-
+-    <antcall target="build-arduino-builder" />
+-
+-    <antcall target="avr-toolchain-bundle">
+-      <param name="unpack_target" value="untar"/>
+-      <param name="gcc_archive_file" value="avr-gcc-${AVRGCC-VERSION}-i686-pc-linux-gnu.tar.bz2"/>
+-      <param name="gcc_version" value="${AVRGCC-VERSION}"/>
+-      <param name="avrdude_archive_file" value="avrdude-${AVRDUDE-VERSION}-i686-pc-linux-gnu.tar.bz2"/>
+-      <param name="avrdude_version" value="${AVRDUDE-VERSION}"/>
+-      <param name="arduinoOTA_archive_file" value="arduinoOTA-${arduinoOTA-VERSION}-linux_386.tar.bz2"/>
+-      <param name="arduinoOTA_version" value="${arduinoOTA-VERSION}"/>
+-    </antcall>
+   </target>
+ 
+   <target name="linux64-build" depends="linux-libastyle-x86" description="Build linux (64-bit) version">
+-    <antcall target="linux-jvm-${linux-bundle-jvm-task}">
+-      <param name="JVM" value="${LINUX64_BUNDLED_JVM}"/>
+-    </antcall>
+-
+-    <antcall target="build-arduino-builder" />
+-
+-    <antcall target="avr-toolchain-bundle">
+-      <param name="unpack_target" value="untar"/>
+-      <param name="gcc_archive_file" value="avr-gcc-${AVRGCC-VERSION}-x86_64-pc-linux-gnu.tar.bz2"/>
+-      <param name="gcc_version" value="${AVRGCC-VERSION}"/>
+-      <param name="avrdude_archive_file" value="avrdude-${AVRDUDE-VERSION}-x86_64-pc-linux-gnu.tar.bz2"/>
+-      <param name="avrdude_version" value="${AVRDUDE-VERSION}"/>
+-      <param name="arduinoOTA_archive_file" value="arduinoOTA-${arduinoOTA-VERSION}-linux_amd64.tar.bz2"/>
+-      <param name="arduinoOTA_version" value="${arduinoOTA-VERSION}"/>
+-    </antcall>
+   </target>
+ 
+   <target name="linux-jvm-noop"/>

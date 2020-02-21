@@ -1,0 +1,8 @@
+arduino (1:1.0+dfsg-8) unstable; urgency=low
+
+    The Arduino.mk and ard-parse-boards CLI for arduino are no longer
+    shipped with the arduino-core package. They are now in the separate
+    "arduino-mk" package. Please install the new package if you use
+    that functionality.
+
+ -- Scott Howard <showard@debian.org>  Sun, 26 Feb 2012 10:08:42 -0500

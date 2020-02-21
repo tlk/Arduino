@@ -1,0 +1,52 @@
+Source: arduino
+Section: electronics
+Priority: extra
+Maintainer: Scott Howard <showard@debian.org>
+Uploaders: Philip Hands <phil@hands.com>
+Build-Depends: debhelper (>= 8), javahelper, default-jdk,
+ librxtx-java (>= 2.2pre2-3) , libjna-java, ant,
+ libastyle-dev, libjssc-java , libjsch-java , libjmdns-java,
+ libcommons-logging-java , libcommons-httpclient-java,
+ libcommons-compress-java, libcommons-exec-java,
+ libcommons-lang3-java, libcommons-net-java,
+ libcommons-codec-java, libsemver-java,
+ libbcpg-java, libbcprov-java,
+ libbatik-java, librsyntaxtextarea-java,
+ libjackson2-core-java, libjackson2-databind-java,
+ libjackson2-annotations-java, libjackson2-module-mrbean-java,
+ unzip 
+Standards-Version: 3.9.5
+Homepage: http://www.arduino.cc
+Vcs-Browser: https://salsa.debian.org/electronics-team/arduino/arduino
+Vcs-Git: https://salsa.debian.org/electronics-team/arduino/arduino.git
+
+
+Package: arduino
+Architecture: all
+Depends: default-jre | java6-runtime, libjna-java,
+ librxtx-java (>= 2.2pre2-3), ${misc:Depends},
+ libastylej-jni, libjmdns-java, liblistserialsj-dev, arduino-core (= ${binary:Version})
+Recommends: extra-xdg-menus, policykit-1
+Description: AVR development board IDE and built-in libraries
+ Arduino is an open-source electronics prototyping platform based on
+ flexible, easy-to-use hardware and software. It's intended for artists,
+ designers, hobbyists, and anyone interested in creating interactive
+ objects or environments.
+ .
+ This package will install the integrated development environment that
+ allows for program writing, code verification, compiling, and uploading
+ to the Arduino development board. Libraries and example code will also
+ be installed.
+
+Package: arduino-core
+Architecture: all
+Depends: ${misc:Depends}, gcc-avr (>= 4.7.0), avrdude, gcc, avr-libc (>= 1.8.0),
+ arduino-builder
+Suggests: arduino-mk
+Description: Code, examples, and libraries for the Arduino platform
+ Arduino is an open hardware microcontroller platform.  This package contains
+ the minimal set of tools to allow one to program an Arduino.  It also contains
+ examples and libraries. For a CLI, see the 'arduino-mk' package.
+ .
+ This package does not include the Java based Integrated Development
+ Environment, which can be found in the 'arduino' package.

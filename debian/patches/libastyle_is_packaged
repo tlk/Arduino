@@ -1,0 +1,68 @@
+From: Scott Howard <showard@debian.org>
+Date: Wed, 28 Mar 2018 15:52:21 -0300
+Subject: libastyle_is_packaged
+
+---
+ build/build.xml | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/build/build.xml b/build/build.xml
+index d95f8de..8fa118d 100644
+--- a/build/build.xml
++++ b/build/build.xml
+@@ -457,7 +457,7 @@
+ 
+     <antcall target="unzip">
+       <param name="archive_file" value="./libastylej-2.05.1-3.zip" />
+-      <param name="archive_url" value="https://downloads.arduino.cc/libastylej-2.05.1-3.zip" />
++      <param name="archive_url" value="https://downloads.arduino.cc/canary_libastylej-2.05.1-3.zip" />
+       <param name="final_folder" value="${staging_folder}/libastylej-2.05.1" />
+       <param name="dest_folder" value="${staging_folder}" />
+     </antcall>
+@@ -642,6 +642,10 @@
+   </target>
+ 
+   <target name="linux-libastyle-x86" depends="linux-build" description="Download libastyle.so for x86/x64 arch">
++    <!-- (((
++
++	 libastyle is allready packaged
++
+     <antcall target="unzip">
+       <param name="archive_file" value="./libastylej-2.05.1-3.zip" />
+       <param name="archive_url" value="https://downloads.arduino.cc/libastylej-2.05.1-3.zip" />
+@@ -650,6 +654,7 @@
+     </antcall>
+     <copy file="linux/libastylej-2.05.1/libastylej${arch-bits}.so" tofile="linux/work/lib/libastylej.so" />
+     <chmod perm="755" file="linux/work/lib/libastylej.so" />
++    ))) -->
+ 
+     <antcall target="portable-${portable}">
+       <param name="parentdir" value="linux/work" />
+@@ -667,6 +672,10 @@
+   </target>
+ 
+   <target name="linux-libastyle-arm" depends="linux-build" description="Download libastyle.so for ARM">
++    <!-- (((
++
++	 libastyle is allready packaged
++
+     <antcall target="unzip">
+       <param name="archive_file" value="./libastylej-2.05.1-3.zip" />
+       <param name="archive_url" value="https://downloads.arduino.cc/libastylej-2.05.1-3.zip" />
+@@ -675,6 +684,7 @@
+     </antcall>
+     <copy file="linux/libastylej-2.05.1/libastylej_arm.so" tofile="linux/work/lib/libastylej.so" />
+     <chmod perm="755" file="linux/work/lib/libastylej.so" />
++    ))) -->
+ 
+     <antcall target="portable-${portable}">
+       <param name="parentdir" value="linux/work" />
+@@ -984,7 +994,7 @@
+ 
+     <antcall target="unzip">
+       <param name="archive_file" value="./libastylej-2.05.1-3.zip" />
+-      <param name="archive_url" value="https://downloads.arduino.cc/libastylej-2.05.1-3.zip" />
++      <param name="archive_url" value="https://downloads.arduino.cc/canary_libastylej-2.05.1-3.zip" />
+       <param name="final_folder" value="${staging_folder}/libastylej-2.05.1" />
+       <param name="dest_folder" value="${staging_folder}" />
+     </antcall>

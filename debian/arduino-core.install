@@ -1,0 +1,4 @@
+build/linux/work/hardware/ usr/share/arduino
+build/linux/work/libraries/ usr/share/arduino
+build/linux/work/tools/ usr/share/arduino
+build/shared/revisions.txt usr/share/arduino

@@ -1,0 +1,37 @@
+From: Ignacio Losiggio <iglosiggio@gmail.com>
+Date: Wed, 28 Mar 2018 15:53:57 -0300
+Subject: Use system libraries in the start script
+
+---
+ build/linux/dist/arduino | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/build/linux/dist/arduino b/build/linux/dist/arduino
+index 60c4176..b831556 100755
+--- a/build/linux/dist/arduino
++++ b/build/linux/dist/arduino
+@@ -19,13 +19,16 @@ for LIB in \
+     "$APPDIR"/java/lib/rt.jar \
+     "$APPDIR"/java/lib/tools.jar \
+     "$APPDIR"/lib/*.jar \
++    /usr/share/java/*.jar \
+     ;
+ do
+     CLASSPATH="${CLASSPATH}:${LIB}"
+ done
+ export CLASSPATH
+ 
+-LD_LIBRARY_PATH="/usr/lib/jni${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
++DEB_HOST_MULTIARCH=`dpkg-architecture -qDEB_HOST_MULTIARCH`
++
++LD_LIBRARY_PATH="/usr/lib/jni/${DEB_HOST_MULTIARCH}:/usr/lib/jni${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+ export LD_LIBRARY_PATH
+ 
+ export PATH="${APPDIR}/java/bin:${PATH}"
+@@ -45,5 +48,5 @@ if [[ "$@" != *"--"* ]] ; then
+ 	JAVA_OPTIONS+=("-splash:$APPDIR/lib/splash.png")
+ fi
+ 
+-"$JAVA" "${JAVA_OPTIONS[@]}" processing.app.Base "$@"
+ 
++"$JAVA" "${JAVA_OPTIONS[@]}" processing.app.Base "$@"
