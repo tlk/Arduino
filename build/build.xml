@@ -655,7 +655,7 @@
     </chmod>
   </target>
 
-  <target name="linux-libastyle-x86" depends="linux-build" description="Download libastyle.so for x86/x64 arch">
+  <target name="linux-libastyle-x86" depends="linux-build" description="Download libastyle.so for x86/x64 arch" unless="debian_dfsg">
     <antcall target="unzip">
       <param name="archive_file" value="./libastylej-2.05.1-5.zip" />
       <param name="archive_url" value="https://downloads.arduino.cc/libastylej-2.05.1-5.zip" />
@@ -680,7 +680,7 @@
 
   </target>
 
-  <target name="linux-libastyle-arm" depends="linux-build" description="Download libastyle.so for ARM">
+  <target name="linux-libastyle-arm" depends="linux-build" description="Download libastyle.so for ARM" unless="debian_dfsg">
     <antcall target="unzip">
       <param name="archive_file" value="./libastylej-2.05.1-5.zip" />
       <param name="archive_url" value="https://downloads.arduino.cc/libastylej-2.05.1-5.zip" />
@@ -723,7 +723,7 @@
     </antcall>
   </target>
 
-  <target name="linux-libastyle-aarch64" depends="linux-build" description="Download libastyle.so for AArch64">
+  <target name="linux-libastyle-aarch64" depends="linux-build" description="Download libastyle.so for AArch64" unless="debian_dfsg">
     <antcall target="unzip">
       <param name="archive_file" value="./libastylej-2.05.1-5.zip" />
       <param name="archive_url" value="https://downloads.arduino.cc/libastylej-2.05.1-5.zip" />
