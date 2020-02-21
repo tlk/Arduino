@@ -13,8 +13,7 @@ Build-Depends: debhelper (>= 8), javahelper, default-jdk,
  libbcpg-java, libbcprov-java,
  libbatik-java, librsyntaxtextarea-java,
  libjackson2-core-java, libjackson2-databind-java,
- libjackson2-annotations-java, libjackson2-module-mrbean-java,
- unzip
+ libjackson2-annotations-java, unzip
 Standards-Version: 3.9.5
 Homepage: http://www.arduino.cc
 Vcs-Browser: https://salsa.debian.org/electronics-team/arduino/arduino
