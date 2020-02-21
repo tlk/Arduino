@@ -53,7 +53,6 @@ import processing.app.helpers.filefilters.OnlyDirs;
 import processing.app.helpers.filefilters.OnlyFilesWithExtension;
 import processing.app.javax.swing.filechooser.FileNameExtensionFilter;
 import processing.app.legacy.PApplet;
-import processing.app.macosx.ThinkDifferent;
 import processing.app.packages.LibraryList;
 import processing.app.packages.UserLibrary;
 import processing.app.packages.UserLibraryFolder.Location;
@@ -137,14 +136,6 @@ public class Base {
       System.setProperty("swing.aatext", "true");
     }
     System.setProperty("java.net.useSystemProxies", "true");
-
-    if (OSUtils.isMacOS()) {
-      System.setProperty("apple.laf.useScreenMenuBar",
-        String.valueOf(!System.getProperty("os.version").startsWith("10.13")
-          || com.apple.eawt.Application.getApplication().isAboutMenuItemPresent()));
-
-      ThinkDifferent.init();
-    }
 
     try {
       INSTANCE = new Base(args);
