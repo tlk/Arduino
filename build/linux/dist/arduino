@@ -6,13 +6,16 @@ for LIB in \
     "$APPDIR"/java/lib/rt.jar \
     "$APPDIR"/java/lib/tools.jar \
     "$APPDIR"/lib/*.jar \
+    /usr/share/java/*.jar \
     ;
 do
     CLASSPATH="${CLASSPATH}:${LIB}"
 done
 export CLASSPATH
 
+DEB_HOST_MULTIARCH=`dpkg-architecture -qDEB_HOST_MULTIARCH`
 LD_LIBRARY_PATH="/usr/lib/jni${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+LD_LIBRARY_PATH="/usr/lib/jni/${DEB_HOST_MULTIARCH}:${LD_LIBRARY_PATH}"
 export LD_LIBRARY_PATH
 
 export PATH="${APPDIR}/java/bin:${PATH}"
