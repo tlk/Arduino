@@ -11,6 +11,11 @@ export CLASSPATH=/usr/share/java/jna.jar\
 :/usr/share/java/commons-logging.jar\
 :/usr/share/java/commons-httpclient.jar\
 :/usr/share/java/commons-exec.jar\
+:/usr/share/java/commons-io.jar\
+:/usr/share/java/log4j-1.2-api.jar\
+:/usr/share/java/log4j-api.jar\
+:/usr/share/java/log4j-core.jar\
+:/usr/share/java/jna-platform.jar\
 # CLASSPATH terminator
 
 SVNTAG=$(shell dpkg-parsechangelog | grep Version | cut -f2 -d" " | sed 's/[0-9]*:\([0-9].*\)+dfsg-[0-9]/\1/')

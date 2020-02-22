@@ -14,6 +14,8 @@ Build-Depends: debhelper (>= 8), javahelper, default-jdk,
  libbatik-java, librsyntaxtextarea-java,
  libjackson2-core-java, libjackson2-databind-java,
  libjackson2-annotations-java, unzip
+ libcommons-io-java, liblog4j2-java,
+ libjna-platform-java
 Standards-Version: 3.9.5
 Homepage: http://www.arduino.cc
 Vcs-Browser: https://salsa.debian.org/electronics-team/arduino/arduino
@@ -24,7 +26,8 @@ Package: arduino
 Architecture: all
 Depends: default-jre | java6-runtime, libjna-java,
  librxtx-java (>= 2.2pre2-3), ${misc:Depends},
- libastylej-jni, libjmdns-java, liblistserialsj-dev, arduino-core (= ${binary:Version})
+ libastylej-jni, libjmdns-java, liblistserialsj-dev, arduino-core (= ${binary:Version}),
+ libxml-commons-external-java, libxmlgraphics-commons-java
 Recommends: extra-xdg-menus, policykit-1
 Description: AVR development board IDE and built-in libraries
  Arduino is an open-source electronics prototyping platform based on
