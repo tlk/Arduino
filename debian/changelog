@@ -1,3 +1,10 @@
+arduino (2:1.8.13+dfsg.1-1) UNRELEASED; urgency=medium
+
+  [ Thomas L. Kjeldsen ]
+  * New upstream version
+
+ -- Thomas L. Kjeldsen <tlk@debian.local>  Sat, 22 Feb 2020 10:57:34 +0100
+
 arduino (2:1.8.5+dfsg.3-1) UNRELEASED; urgency=medium
 
   [ Ignacio Losiggio ]
