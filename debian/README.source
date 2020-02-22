@@ -5,9 +5,8 @@ For my co-maintainers and my future self.
 With
   uscan
 you can get upstream tarball.
-If not, decrease temporary the version in top of debian/change
-and `uscan` again.
-Or in verbose mode, `uscan -v`, to see what is going on.
+Or when up-to-date with upstream
+  uscan --force-download   #  short is uscan -dd
 
 DFSG it.
 Remove all jar files from tarball that upstream provides.
@@ -41,15 +40,15 @@ Import by
 Now the real thing
 
 The upstream arduino assumes there is Internet connection during build.
-That would be moving target for source code inspection.
-Most files in debian/patches/ cope with it.
+That would be a moving target for source code inspection.
+Most files in debian/patches/ cope with preventing Internet access at build.
 
 
 We have / had  in May 2017 three branches in use:
  * master
  * upstream
  * pristine-tar
-They were update by hand.
+They were updated by hand.
 Tooling like "git-buildpackage" might work here.
 Currently, May 2017, not verified. TODO: can gbp be used?
 
@@ -59,3 +58,12 @@ Currently, May 2017, not verified. TODO: can gbp be used?
 
 
 Please keep this file in shape
+
+TODO
+----
+This was in debian/rules
+# override_dh_installdocs:
+#	dh_installdocs
+	#Delete links to fetch web based icon (privacy violation, thanks lintian)
+	## sed -i '/favicon\.png/d' debian/arduino-core/usr/share/doc/arduino-core/reference/*.html
+now here as a reminder for checking  favicon.png as tracking pixel in the documentation

@@ -25,6 +25,7 @@ override_dh_clean:
 	dh_clean
 
 override_jh_build:
+	jh_linkjars
 	mkdir -p build/linux/work/hardware/tools
 	cd build && ant
 	rm -f build/linux/work/lib/version.txt && echo $(SVNTAG) > build/linux/work/lib/version.txt #comment out after beta
@@ -45,9 +46,9 @@ override_dh_install:
 	mkdir -p debian/arduino-core/usr/share/arduino/lib
 	mv debian/arduino/usr/share/arduino/lib/*.txt debian/arduino-core/usr/share/arduino/lib
 
+#override_jh_depends:
+#jh_depends can't resolve symlinks
+
 copyright_check:
 	${MAKE} -f /usr/share/cdbs/1/rules/utils.mk debian/stamp-copyright-check
 	rm debian/stamp-copyright-check
-    
-DESTDIR=$(CURDIR)/debian/arduino-$(SVNTAG)
-TARFILE=arduino_$(SVNTAG)+dfsg.orig.tar.gz

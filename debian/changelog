@@ -8,6 +8,14 @@ arduino (2:1.8.5+dfsg.3-1) UNRELEASED; urgency=medium
 
 arduino (2:1.8.5+dfsg-1) UNRELEASED; urgency=medium
 
+  [ Ignacio Losiggio ]
+  * New upstream version
+  * Various patches refreshed
+
+ -- Ignacio Losiggio <iglosiggio@gmail.com>  Wed, 27 Dec 2017 15:05:05 -0300
+
+arduino (2:1.8.2+dfsg-0.1) UNRELEASED; urgency=medium
+
   [ Geert Stappers ]
   * Non-maintainer upload.
   * New upstream version (Closes: #780706)
@@ -25,11 +33,7 @@ arduino (2:1.8.5+dfsg-1) UNRELEASED; urgency=medium
     - No Mac OS X  Think Different
     - Seperate reference
 
-  [ Ignacio Losiggio ]
-  * New upstream version
-  * Various patches refreshed
-
- -- Ignacio Losiggio <iglosiggio@gmail.com>  Wed, 27 Dec 2017 15:05:05 -0300
+ -- Geert Stappers <stappers@debian.org>  Tue, 30 May 2017 09:05:00 +0200
 
 arduino (2:1.6.8-0) UNRELEASED; urgency=medium
 
