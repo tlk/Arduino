@@ -1,5 +1,7 @@
 #!/usr/bin/make -f
 
+# See https://git.archlinux.org/svntogit/community.git/tree/trunk/PKGBUILD?h=packages/arduino
+
 # Uncomment this to turn on verbose mode.
 # export DH_VERBOSE=1
 
@@ -32,7 +34,7 @@ override_dh_clean:
 override_jh_build:
 	jh_linkjars
 	mkdir -p build/linux/work/hardware/tools
-	cd build && ant -Ddebian_dfsg=true -Dlight_bundle=true
+	cd build && ant -Ddebian_dfsg=true -Dlight_bundle=true -Dno_docs=true -Dlocal_sources=true -Dno_arduino_builder=true
 	rm -f build/linux/work/lib/version.txt && echo $(SVNTAG) > build/linux/work/lib/version.txt #comment out after beta
 	javac debian/permission-checker/arduinopc.java
 	cd debian/permission-checker && jar cfe arduinopc.jar arduinopc *.class
