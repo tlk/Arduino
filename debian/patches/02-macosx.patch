@@ -1,0 +1,172 @@
+diff --git a/app/src/processing/app/Base.java b/app/src/processing/app/Base.java
+index 815f264da..1ebfa5406 100644
+--- a/app/src/processing/app/Base.java
++++ b/app/src/processing/app/Base.java
+@@ -53,7 +53,6 @@ import processing.app.helpers.filefilters.OnlyDirs;
+ import processing.app.helpers.filefilters.OnlyFilesWithExtension;
+ import processing.app.javax.swing.filechooser.FileNameExtensionFilter;
+ import processing.app.legacy.PApplet;
+-import processing.app.macosx.ThinkDifferent;
+ import processing.app.packages.LibraryList;
+ import processing.app.packages.UserLibrary;
+ import processing.app.packages.UserLibraryFolder.Location;
+@@ -138,14 +137,6 @@ public class Base {
+     }
+     System.setProperty("java.net.useSystemProxies", "true");
+ 
+-    if (OSUtils.isMacOS()) {
+-      System.setProperty("apple.laf.useScreenMenuBar",
+-        String.valueOf(!System.getProperty("os.version").startsWith("10.13")
+-          || com.apple.eawt.Application.getApplication().isAboutMenuItemPresent()));
+-
+-      ThinkDifferent.init();
+-    }
+-
+     try {
+       INSTANCE = new Base(args);
+     } catch (Throwable e) {
+diff --git a/app/src/processing/app/EditorToolbar.java b/app/src/processing/app/EditorToolbar.java
+index d37d0cc96..00c53372c 100644
+--- a/app/src/processing/app/EditorToolbar.java
++++ b/app/src/processing/app/EditorToolbar.java
+@@ -27,10 +27,6 @@ import javax.imageio.ImageIO;
+ import javax.swing.*;
+ import javax.swing.event.MouseInputListener;
+ 
+-import com.thizzer.jtouchbar.JTouchBar;
+-import com.thizzer.jtouchbar.item.TouchBarItem;
+-import com.thizzer.jtouchbar.item.view.TouchBarButton;
+-
+ import cc.arduino.contributions.VersionComparator;
+ import processing.app.helpers.OSUtils;
+ 
+@@ -106,13 +102,10 @@ public class EditorToolbar extends JComponent implements MouseInputListener, Key
+   private final Color bgcolor;
+ 
+   private static Image[][] buttonImages;
+-  private static com.thizzer.jtouchbar.common.Image[][] touchBarImages;
+   private int currentRollover;
+ 
+   private JPopupMenu popup;
+   private final JMenu menu;
+-  private JTouchBar touchBar;
+-  private TouchBarButton[] touchBarButtons;
+ 
+   private int buttonCount;
+   private int[] state = new int[BUTTON_COUNT];
+@@ -149,62 +142,12 @@ public class EditorToolbar extends JComponent implements MouseInputListener, Key
+     bgcolor = Theme.getColor("buttons.bgcolor");
+     statusFont = Theme.getFont("buttons.status.font");
+     statusColor = Theme.getColor("buttons.status.color");
+-
+-    if (OSUtils.isMacOS() && VersionComparator.greaterThanOrEqual(OSUtils.version(), "10.12")) {
+-      editor.addWindowListener(new WindowAdapter() {
+-        public void windowActivated(WindowEvent e) {
+-          if (touchBar == null) {
+-            buildTouchBar();
+-            
+-            touchBar.show(editor); 
+-          }               
+-        }
+-      });
+-    }
+     
+     addMouseListener(this);
+     addMouseMotionListener(this);
+     KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
+   }
+   
+-  private void buildTouchBar() {
+-    if (touchBarImages == null) {
+-      loadTouchBarImages();
+-    }
+-    
+-    touchBar = new JTouchBar();
+-    touchBarButtons = new TouchBarButton[BUTTON_COUNT];
+-    touchBar.setCustomizationIdentifier("Arduino");
+-    
+-    for (int i = 0; i < BUTTON_COUNT; i++) {
+-      final int selection = i;
+-      
+-      // add spacers before NEW and SERIAL buttons
+-      if (i == NEW) {
+-        touchBar.addItem(new TouchBarItem(TouchBarItem.NSTouchBarItemIdentifierFixedSpaceSmall));
+-      } else if (i == SERIAL) {
+-        touchBar.addItem(new TouchBarItem(TouchBarItem.NSTouchBarItemIdentifierFlexibleSpace));
+-      }
+-      
+-      touchBarButtons[i] = new TouchBarButton();
+-      touchBarButtons[i].setImage(touchBarImages[i][ROLLOVER]);
+-      touchBarButtons[i].setAction(event -> {
+-        // Run event handler later to prevent hanging if a dialog needs to be open
+-        EventQueue.invokeLater(new Runnable() {
+-          @Override
+-          public void run() {
+-            handleSelectionPressed(selection);
+-          }
+-        });
+-      });
+-      
+-      TouchBarItem touchBarItem = new TouchBarItem(title[i], touchBarButtons[i], true);
+-      touchBarItem.setCustomizationLabel(title[i]);
+-      
+-      touchBar.addItem(touchBarItem);
+-    }
+-  }
+-
+   private void loadButtons() {
+     Image allButtons = Theme.getThemeImage("buttons", this,
+                                            BUTTON_IMAGE_SIZE * BUTTON_COUNT,
+@@ -225,36 +168,6 @@ public class EditorToolbar extends JComponent implements MouseInputListener, Key
+     }
+   }
+   
+-  private void loadTouchBarImages() {
+-    Image allButtonsRetina = Theme.getThemeImage("buttons", this,
+-                                           BUTTON_IMAGE_SIZE * BUTTON_COUNT * 2,
+-                                           BUTTON_IMAGE_SIZE * 3 * 2);
+-    touchBarImages = new com.thizzer.jtouchbar.common.Image[BUTTON_COUNT][3];
+-
+-    for (int i = 0; i < BUTTON_COUNT; i++) {
+-      for (int state = 0; state < 3; state++) {
+-        BufferedImage image = new BufferedImage(BUTTON_WIDTH * 2, BUTTON_HEIGHT * 2, 
+-                                                BufferedImage.TYPE_INT_ARGB);
+-        Graphics g = image.getGraphics();
+-
+-        int offset = (BUTTON_IMAGE_SIZE * 2 - BUTTON_WIDTH * 2) / 2;
+-        g.drawImage(allButtonsRetina, -(i * BUTTON_IMAGE_SIZE * 2) - offset,
+-                    (-2 + state) * BUTTON_IMAGE_SIZE * 2, null);        
+-        
+-        // convert the image to a PNG to display on the touch bar
+-        ByteArrayOutputStream pngStream = new ByteArrayOutputStream();
+-        
+-        try {
+-          ImageIO.write(image, "PNG", pngStream);
+-
+-          touchBarImages[i][state] = new com.thizzer.jtouchbar.common.Image(pngStream.toByteArray());
+-        } catch (IOException e) {
+-          // ignore errors
+-        }
+-      }
+-    }
+-  }
+-
+   @Override
+   public void paintComponent(Graphics screen) {
+     // this data is shared by all EditorToolbar instances
+@@ -402,15 +315,6 @@ public class EditorToolbar extends JComponent implements MouseInputListener, Key
+     if (updateAfter) {
+       repaint();
+     }
+-    
+-    if (touchBarButtons != null) { 
+-      if (newState == INACTIVE) {
+-        // use ROLLOVER state when INACTIVE
+-        newState = ROLLOVER;
+-      }
+-      
+-      touchBarButtons[slot].setImage(touchBarImages[slot][newState]);
+-    }
+   }
+ 
+ 

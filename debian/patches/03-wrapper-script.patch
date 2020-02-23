@@ -1,0 +1,28 @@
+diff --git a/build/linux/dist/arduino b/build/linux/dist/arduino
+index f70c65082..84d3390ab 100755
+--- a/build/linux/dist/arduino
++++ b/build/linux/dist/arduino
+@@ -1,18 +1,21 @@
+ #!/usr/bin/env bash
+ 
+-APPDIR="$(dirname -- "$(readlink -f -- "${0}")" )"
++APPDIR=/usr/share/arduino
+ 
+ for LIB in \
+     "$APPDIR"/java/lib/rt.jar \
+     "$APPDIR"/java/lib/tools.jar \
+     "$APPDIR"/lib/*.jar \
++    /usr/share/java/*.jar \
+     ;
+ do
+     CLASSPATH="${CLASSPATH}:${LIB}"
+ done
+ export CLASSPATH
+ 
+-LD_LIBRARY_PATH=$APPDIR/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
++DEB_HOST_MULTIARCH=`dpkg-architecture -qDEB_HOST_MULTIARCH`
++LD_LIBRARY_PATH="/usr/lib/jni${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
++LD_LIBRARY_PATH="/usr/lib/jni/${DEB_HOST_MULTIARCH}:${LD_LIBRARY_PATH}"
+ export LD_LIBRARY_PATH
+ 
+ export PATH="${APPDIR}/java/bin:${PATH}"
