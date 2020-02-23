@@ -43,8 +43,6 @@ override_jh_build:
 override_dh_install:
 	find build/linux/work -type d -empty -delete
 	dh_install -Xlicense -XLICENSE -XLicense -XMangler/make.sh
-	mkdir -p debian/arduino-core/usr/share/arduino/lib
-	mv debian/arduino/usr/share/arduino/lib/*.txt debian/arduino-core/usr/share/arduino/lib
 
 override_dh_installchangelogs:
 	dh_installchangelogs -k build/linux/work/revisions.txt

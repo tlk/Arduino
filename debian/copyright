@@ -20,11 +20,7 @@ Files-Excluded:
   *.settings/*
   build/linux/dist/tools
   app/src/processing/app/macosx/*
-  arduino-core/src/processing/app/macosx/*
-  arduino-core/src/processing/app/windows/*
-  arduino-core/src/cc/arduino/os/windows/*
   app/lib/*.txt
-  arduino-core/lib/*.txt
   build/windows/*
   build/macosx/*
   build/shared/*.sha
