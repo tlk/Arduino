@@ -1,5 +1,3 @@
-# See https://www.debian.org/doc/manuals/packaging-tutorial/packaging-tutorial.en.pdf
-
 name: Debian packaging
 
 on: [push]
@@ -21,3 +19,5 @@ jobs:
       run: sudo mk-build-deps --install --tool='apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes' debian/control
     - name: Build Debian package
       run: dpkg-buildpackage -us -uc
+
+# See https://www.debian.org/doc/manuals/packaging-tutorial/packaging-tutorial.en.pdf
